@@ -3,26 +3,80 @@ const VALID_PASS = "9999";
 const SESSION_KEY = "rs_sehat_sentosa_verified";
 const FALLBACK_SESSION_KEY = "loginJanjiTemu";
 
-const judulKeluar = document.getElementById("judulKeluar");
-const pesanKeluar = document.getElementById("pesanKeluar");
+function sudahLogin() {
+  return (
+    sessionStorage.getItem(SESSION_KEY) === "true" ||
+    sessionStorage.getItem(FALLBACK_SESSION_KEY) === "true"
+  );
+}
 
-function bersihkanSesi() {
+function simpanSesiLogin() {
+  sessionStorage.setItem(SESSION_KEY, "true");
+  sessionStorage.setItem(FALLBACK_SESSION_KEY, "true");
+}
+
+function hapusSesiLogin() {
   sessionStorage.removeItem(SESSION_KEY);
   sessionStorage.removeItem(FALLBACK_SESSION_KEY);
 }
 
-function tampilkanPesanKeluar() {
-  if (judulKeluar && !judulKeluar.textContent.trim()) {
-    judulKeluar.textContent = "Terima kasih dan lekas sembuh";
-  }
-
-  if (pesanKeluar && !pesanKeluar.textContent.trim()) {
-    pesanKeluar.textContent =
-      "Semoga kesehatan Anda segera pulih. Terima kasih telah mempercayakan layanan kesehatan Anda kepada RS Sehat Sentosa.";
-  }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-  bersihkanSesi();
-  tampilkanPesanKeluar();
+  // Bersihkan sesi saat link "Keluar" diklik
+  const linkKeluar = document.querySelectorAll('a[href="login.html"]');
+  linkKeluar.forEach(function (link) {
+    if (link.textContent.trim().toLowerCase() === "keluar") {
+      link.addEventListener("click", function () {
+        hapusSesiLogin();
+      });
+    }
+  });
+
+  // Logika login di halaman janji temu (kontak.html / janji.html)
+  const gerbangLoginJanji = document.getElementById("gerbangLoginJanji");
+  const kontenJanjiTemu = document.getElementById("kontenJanjiTemu");
+  const formLoginJanji = document.getElementById("formLoginJanji");
+  const kunciFormBtn = document.getElementById("kunciFormBtn");
+
+  if (gerbangLoginJanji && kontenJanjiTemu) {
+    function perbaruiTampilan() {
+      if (sudahLogin()) {
+        gerbangLoginJanji.style.display = "none";
+        kontenJanjiTemu.style.display = "block";
+      } else {
+        gerbangLoginJanji.style.display = "block";
+        kontenJanjiTemu.style.display = "none";
+      }
+    }
+
+    perbaruiTampilan();
+
+    if (formLoginJanji) {
+      formLoginJanji.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const userInput = document.getElementById("userJanji");
+        const passInput = document.getElementById("passJanji");
+        const errorBox = document.getElementById("errorJanji");
+
+        const username = userInput ? userInput.value.trim() : "";
+        const password = passInput ? passInput.value.trim() : "";
+
+        if (username === VALID_USER && password === VALID_PASS) {
+          simpanSesiLogin();
+          if (errorBox) errorBox.textContent = "";
+          perbaruiTampilan();
+        } else if (errorBox) {
+          errorBox.textContent = "Username atau password salah.";
+        }
+      });
+    }
+
+    if (kunciFormBtn) {
+      kunciFormBtn.addEventListener("click", function () {
+        hapusSesiLogin();
+        if (formLoginJanji) formLoginJanji.reset();
+        perbaruiTampilan();
+      });
+    }
+  }
 });
