@@ -1,33 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login - RS SEHAT SENTOSA</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - RS SEHAT SENTOSA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="halaman-login">
-<main class="login-box">
-  <div class="login-info">
-    <h1>RS SEHAT SENTOSA</h1>
-    <p>Masuk untuk membuat jadwal janji temu dengan dokter.</p>
-    <p class="petunjuk">Rumah sakit umum tipe B. Melayani sejak 1998.</p>
-  </div>
-  <div class="login-form">
-    <h2>Masuk</h2>
-    <p class="petunjuk">Gunakan akun pasien terdaftar. <a href="index.html">Kembali ke beranda</a></p>
-    <form id="formLogin" class="form-login">
-      <div class="form">
-        <label for="username">Username</label>
-        <input type="text" id="username" required autocomplete="username">
-        <label for="password">Password</label>
-        <input type="password" id="password" required autocomplete="current-password">
-        <p id="pesanError" class="pesan-error" role="alert"></p>
-        <button type="submit" class="tombol">Masuk</button>
+  <main class="login-box">
+    <!-- Panel Informasi Rumah Sakit -->
+    <section class="login-info" aria-label="Informasi Rumah Sakit">
+      <span class="badge-rs">+ Layanan Pasien &amp; Janji Temu</span>
+      <h1>RS SEHAT SENTOSA</h1>
+      <p>Masuk untuk membuat dan mengatur jadwal janji temu dengan dokter spesialis secara lebih praktis.</p>
+      <p class="petunjuk">Rumah sakit umum tipe B. Melayani sejak 1998 di Ungaran, Kabupaten Semarang.</p>
+
+      <ul class="info-poin">
+        <li>Pendaftaran janji temu lebih cepat &amp; terstruktur</li>
+        <li>Informasi poliklinik dan jadwal dokter terupdate</li>
+        <li>Akses aman khusus akun terdaftar</li>
+      </ul>
+    </section>
+
+    <!-- Panel Form Login -->
+    <section class="login-form" aria-label="Formulir Masuk">
+      <div class="login-header">
+        <h2>Masuk</h2>
+        <p class="petunjuk">
+          <a href="index.html" class="link-beranda">Kembali ke beranda</a>
+        </p>
       </div>
-    </form>
-  </div>
-</main>
-<script src="js/login.js"></script>
+
+      <form id="formLogin" class="form-login" novalidate>
+        <div class="form">
+          <div class="grup-input">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              placeholder="Masukkan username"
+              required
+              autocomplete="username"
+            >
+          </div>
+
+          <div class="grup-input">
+            <label for="password">Password</label>
+            <div class="bungkus-password">
+              <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                required
+                autocomplete="current-password"
+              >
+              <button type="button" id="togglePassword" class="tombol-intip" aria-label="Tampilkan atau sembunyikan password">
+                Lihat
+              </button>
+            </div>
+          </div>
+
+          <p id="pesanError" class="pesan-error" role="alert"></p>
+
+          <button type="submit" class="tombol">Masuk ke Akun</button>
+        </div>
+      </form>
+
+      <div class="catatan-bantuan">
+        <p>Butuh bantuan pendaftaran? Hubungi loket (024) 555-0100 (Senin–Sabtu, 07.00–20.00 WIB).</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/login.js"></script>
 </body>
 </html>
