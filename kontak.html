@@ -1,39 +1,137 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Janji Temu - RS SEHAT SENTOSA</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Janji Temu - RS SEHAT SENTOSA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="topbar"><div class="wrap"><span>Jl. Merdeka No. 45, Ungaran, Kab. Semarang</span><span>IGD 24 jam: <strong>(024) 555-0119</strong></span></div></div>
-<header class="navbar"><div class="wrap">
-<a class="brand" href="index.html">RS SEHAT <span>SENTOSA</span></a>
-<nav><ul class="menu"><li><a href="index.html">Beranda</a></li><li><a href="tentang.html">Tentang Kami</a></li><li><a href="layanan.html">Layanan</a></li><li><a href="dokter.html">Jadwal Dokter</a></li><li><a href="kontak.html" class="aktif">Janji Temu</a></li><li><a href="login.html">Keluar</a></li></ul></nav>
-</div></header>
-<main>
-<div class="judul-halaman"><div class="wrap"><h1>Janji Temu dan Kontak</h1><p>Isi formulir untuk mendaftar. Petugas kami akan menghubungi Anda untuk konfirmasi jadwal.</p></div></div>
-<section class="blok"><div class="wrap dua-kolom">
-<form class="form" action="kontak.html" method="get">
-<h2>Formulir janji temu</h2>
-<label for="nama">Nama lengkap</label><input type="text" id="nama" name="nama" required>
-<label for="hp">Nomor HP</label><input type="tel" id="hp" name="hp" required>
-<label for="poli">Poliklinik</label>
-<select id="poli" name="poli"><option>Poli Umum</option><option>Poli Jantung</option><option>Poli Anak</option><option>Poli Kandungan</option><option>Poli Gigi</option><option>Poli Mata</option></select>
-<label for="tanggal">Tanggal kunjungan</label><input type="date" id="tanggal" name="tanggal" required>
-<label for="keluhan">Keluhan singkat</label><textarea id="keluhan" name="keluhan"></textarea>
-<button type="submit" class="tombol">Kirim janji temu</button>
-</form>
-<div><h2>Hubungi kami</h2>
-<div class="kartu"><h3>Alamat</h3><p>Jl. Merdeka No. 45, Ungaran, Kabupaten Semarang, Jawa Tengah</p></div><br>
-<div class="kartu"><h3>Telepon</h3><p>Pendaftaran: (024) 555-0100<br>IGD 24 jam: (024) 555-0119</p></div><br>
-<div class="kartu"><h3>Jam pendaftaran</h3><p>Senin - Sabtu: 07.00-20.00<br>Minggu dan libur: IGD saja</p></div>
-</div></div></section>
-</main><footer><div class="wrap">
-<div><h3>RS Sehat Sentosa</h3><p>Pelayanan kesehatan yang ramah, cepat, dan terpercaya untuk keluarga Anda.</p></div>
-<div><h3>Kontak</h3><p>Jl. Merdeka No. 45, Ungaran<br>Telp: (024) 555-0100<br>Email: info@sehatsentosa.example</p></div>
-<div><h3>Jam kunjungan</h3><p>Setiap hari<br>11.00-13.00 dan 17.00-19.00</p></div>
-</div><div class="wrap"><p class="hak-cipta">&copy; 2026 RS Sehat Sentosa. Website contoh untuk tugas kuliah.</p></div></footer>
+  <div class="topbar">
+    <div class="wrap">
+      <span>Jl. Merdeka No. 45, Ungaran, Kab. Semarang</span>
+      <span>IGD 24 jam: <strong>(024) 555-0119</strong></span>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="wrap">
+      <a class="brand" href="index.html">RS SEHAT <span>SENTOSA</span></a>
+      <nav>
+        <ul class="menu">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="layanan.html">Layanan</a></li>
+          <li><a href="dokter.html">Jadwal Dokter</a></li>
+          <li><a href="kontak.html" class="aktif">Janji Temu</a></li>
+          <li><a href="login.html">Keluar</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="judul-halaman">
+      <div class="wrap">
+        <h1>Janji Temu dan Kontak</h1>
+        <p>Masuk terlebih dahulu untuk mengisi formulir janji temu dengan dokter.</p>
+      </div>
+    </div>
+
+    <section class="blok">
+      <div class="wrap dua-kolom">
+        <div>
+          <!-- GERBANG LOGIN (MUNCUL SAAT BELUM LOGIN) -->
+          <div id="gerbangLoginJanji" class="kartu">
+            <h2>Login sebelum mengisi janji temu</h2>
+            <p class="petunjuk">Masukkan username dan password akun terdaftar untuk membuka formulir.</p>
+
+            <form id="formLoginJanji" class="form">
+              <label for="userJanji">Username</label>
+              <input type="text" id="userJanji" name="userJanji" placeholder="Masukkan username" required autocomplete="username">
+
+              <label for="passJanji">Password</label>
+              <input type="password" id="passJanji" name="passJanji" placeholder="Masukkan password" required autocomplete="current-password">
+
+              <p id="errorJanji" class="pesan-error" role="alert"></p>
+
+              <button type="submit" class="tombol">Login &amp; buka formulir</button>
+            </form>
+          </div>
+
+          <!-- FORMULIR JANJI TEMU (TERSEMBUNYI SAMPAI LOGIN BERHASIL) -->
+          <div id="kontenJanjiTemu" style="display: none;">
+            <form id="formJanjiTemu" class="form" action="kontak.html" method="get">
+              <p class="petunjuk"><strong>STATUS: TERVERIFIKASI</strong></p>
+              <h2>Formulir janji temu</h2>
+
+              <label for="nama">Nama lengkap</label>
+              <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+
+              <label for="hp">Nomor HP</label>
+              <input type="tel" id="hp" name="hp" placeholder="Contoh: 08123456789" required>
+
+              <label for="poli">Poliklinik</label>
+              <select id="poli" name="poli">
+                <option>Poli Umum</option>
+                <option>Poli Jantung</option>
+                <option>Poli Anak</option>
+                <option>Poli Kandungan</option>
+                <option>Poli Gigi</option>
+                <option>Poli Mata</option>
+              </select>
+
+              <label for="tanggal">Tanggal kunjungan</label>
+              <input type="date" id="tanggal" name="tanggal" required>
+
+              <label for="keluhan">Keluhan singkat</label>
+              <textarea id="keluhan" name="keluhan" placeholder="Tuliskan keluhan kesehatan yang dialami..."></textarea>
+
+              <button type="submit" class="tombol">Kirim janji temu</button>
+              <button type="button" id="kunciFormBtn" class="tombol" style="margin-top:8px;background:#64748b;">Kunci / Keluar Sesi Form</button>
+            </form>
+          </div>
+        </div>
+
+        <div>
+          <h2>Hubungi kami</h2>
+          <div class="kartu">
+            <h3>Alamat</h3>
+            <p>Jl. Merdeka No. 45, Ungaran, Kabupaten Semarang, Jawa Tengah</p>
+          </div><br>
+          <div class="kartu">
+            <h3>Telepon</h3>
+            <p>Pendaftaran: (024) 555-0100<br>IGD 24 jam: (024) 555-0119</p>
+          </div><br>
+          <div class="kartu">
+            <h3>Jam pendaftaran</h3>
+            <p>Senin - Sabtu: 07.00-20.00<br>Minggu dan libur: IGD saja</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <h3>RS Sehat Sentosa</h3>
+        <p>Pelayanan kesehatan yang ramah, cepat, dan terpercaya untuk keluarga Anda.</p>
+      </div>
+      <div>
+        <h3>Kontak</h3>
+        <p>Jl. Merdeka No. 45, Ungaran<br>Telp: (024) 555-0100<br>Email: info@sehatsentosa.example</p>
+      </div>
+      <div>
+        <h3>Jam kunjungan</h3>
+        <p>Setiap hari<br>11.00-13.00 dan 17.00-19.00</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="hak-cipta">&copy; 2026 RS Sehat Sentosa. Website contoh untuk tugas kuliah.</p>
+    </div>
+  </footer>
+
+  <script src="js/login.js"></script>
 </body>
 </html>
