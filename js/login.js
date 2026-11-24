@@ -1,13 +1,16 @@
-document.getElementById("formLogin").addEventListener("submit", function (e) {
-  e.preventDefault();
-  var user = document.getElementById("username").value;
-  var pass = document.getElementById("password").value;
-  var pesan = document.getElementById("pesanError");
+const form = document.getElementById("formLogin");
+const pesan = document.getElementById("pesan");
 
-  if (user === "admin" && pass === "admin123") {
-    window.location.href = "janji.html";
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (username === "admin" && password === "admin123") {
+    window.location.href = "kontak.html";
   } else {
     pesan.textContent = "Login gagal. Username atau password salah.";
     pesan.classList.add("tampil");
   }
 });
+
