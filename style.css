@@ -140,3 +140,35 @@ text-decoration:none;
 .menu a.menu-janji:hover,.menu a.menu-janji.aktif{background:#f0b34f;color:#2b1d00}
 .ajakan{text-align:center}
 .ajakan .intro{margin-left:auto;margin-right:auto}
+
+.sosmed {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 0;
+}
+
+.sosmed a {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: #ffffff;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.sosmed a:hover,
+.sosmed a:focus-visible {
+  background: #e0a63a;
+  border-color: #e0a63a;
+  color: #0f4c4a;
+}
+
+.sosmed svg {
+  width: 14px;
+  height: 14px;
+}
