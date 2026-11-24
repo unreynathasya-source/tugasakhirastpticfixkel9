@@ -140,35 +140,119 @@ text-decoration:none;
 .menu a.menu-janji:hover,.menu a.menu-janji.aktif{background:#f0b34f;color:#2b1d00}
 .ajakan{text-align:center}
 .ajakan .intro{margin-left:auto;margin-right:auto}
-
-.sosmed {
-  list-style: none;
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  padding: 0;
+/* Pengaturan dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.sosmed a {
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  color: #ffffff;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F8F7F2;
+    color: #333333;
 }
 
-.sosmed a:hover,
-.sosmed a:focus-visible {
-  background: #e0a63a;
-  border-color: #e0a63a;
-  color: #0f4c4a;
+/* Bagian daftar dokter */
+.dokter {
+    padding: 50px 30px;
 }
 
-.sosmed svg {
-  width: 14px;
-  height: 14px;
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Judul */
+.dokter h1 {
+    text-align: center;
+    color: #104F50;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.deskripsi {
+    text-align: center;
+    color: #555555;
+    margin-bottom: 35px;
+}
+
+/* Susunan kartu dokter */
+.daftar-dokter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+/* Kartu dokter */
+.kartu-dokter {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+/* Foto dokter */
+.kartu-dokter img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: #D3D3D3;
+}
+
+/* Tombol profil */
+.kartu-dokter button {
+    background-color: #104F50;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.kartu-dokter button:hover {
+    background-color: #EBA638;
+    color: #104F50;
+}
+
+/* Informasi profil */
+.profil-dokter {
+    display: none;
+    padding: 15px;
+    text-align: left;
+}
+
+.profil-dokter h3 {
+    color: #104F50;
+    margin-bottom: 10px;
+}
+
+.profil-dokter p {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 900px) {
+    .daftar-dokter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .daftar-dokter {
+        grid-template-columns: 1fr;
+    }
+}
+.nama-dokter {
+    color: #104F50;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-size: 20px;
 }
