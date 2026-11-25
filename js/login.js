@@ -22,7 +22,7 @@ function hapusSesiLogin() {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Bersihkan sesi saat link "Keluar" diklik
-  const linkKeluar = document.querySelectorAll('a[href="login.html"]');
+const linkKeluar = document.querySelectorAll('a[href="keluar.html"]');
   linkKeluar.forEach(function (link) {
     if (link.textContent.trim().toLowerCase() === "keluar") {
       link.addEventListener("click", function () {
